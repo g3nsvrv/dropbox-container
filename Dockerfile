@@ -22,6 +22,7 @@ RUN rm -rf /var/lib/apt/lists/*
 # (dropbox.py installs to $HOME/.dropbox-dist by default, so install as root
 # then relocate to /opt so it isn't tied to any particular account's home dir)
 RUN curl -L https://linux.dropbox.com/packages/dropbox.py -o /opt/dropbox.py
+RUN chown ${PUID}:${PGID} /opt/dropbox.py
 RUN echo y | python3 /opt/dropbox.py update
 RUN mv /root/.dropbox-dist /opt/dropbox-dist
 
