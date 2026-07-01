@@ -1,4 +1,4 @@
-# Dropbox as a Container
+# Dropbox as Container
 
 Run the official Linux Dropbox client inside a single, self-contained Docker image, ready to pull and run from Docker Hub.
 

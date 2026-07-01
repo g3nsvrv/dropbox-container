@@ -1,5 +1,4 @@
 name: Docker Image CI
-
 on:
   push:
     branches: [ "main" ]
@@ -7,12 +6,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file dropbox/Dockerfile --tag my-image-name:$(date +%s) --build-arg USERACCOUNT=dropbox --build-arg GROUPACCOUNT=users --build-arg UID=1000 --build-arg GID=100
+      run: docker build . --file Dockerfile --tag dropbox-container:$(date +%s)
