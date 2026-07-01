@@ -18,7 +18,7 @@ fi
 
 HOME_DIR="$(getent passwd "${PUID}" | cut -d: -f6)"
 
-mkdir -p "${HOME_DIR}/Dropbox" "${HOME_DIR}/.dropbox"
+mkdir -p "${HOME_DIR}/.dropbox"
 
 # Link the daemon (installed once at build time under /opt) into the user's home
 if [ ! -e "${HOME_DIR}/.dropbox-dist" ]; then
