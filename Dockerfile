@@ -31,5 +31,11 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 VOLUME ["/home/${USERACCOUNT}"]
 
+# Healthy once dropboxd has successfully linked the account, based on the
+# entrypoint's mirrored log file. Consumers (e.g. docker compose depends_on:
+# condition: service_healthy) can gate startup of dependent services on this.
+HEALTHCHECK --interval=5s --timeout=3s --retries=60 --start-period=10s \
+    CMD sh -c "grep -q 'This computer is now linked to Dropbox.' /home/${USERACCOUNT}/.dropbox/entrypoint.log 2>/dev/null"
+
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["dropboxd"]
